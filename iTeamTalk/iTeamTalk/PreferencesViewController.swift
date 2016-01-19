@@ -58,7 +58,20 @@ let PREF_TTSEVENT_RATE = "tts_rate_preference"
 let PREF_TTSEVENT_VOL = "tts_volume_preference"
 
 
-class PreferencesViewController : UIViewController, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate {
+class PreferencesViewController : UIViewController, UITableViewDataSource, UITableViewDelegate, UIPickerViewDelegate, UITextFieldDelegate {
+    // Let's dump all text-to-speech voices into a dictionary here.
+    
+    var ttVoiceLanguages: [Dictionary<String, String?>] = []
+var selectedVoiceLanguage = 0
+    
+    func PrepareVoiceList() {
+        for voice in AVSpeechSynthesisVoice.speechVoices() {
+            let voiceLanguageCode = (voice as AVSpeechSynthesisVoice).language
+            let languageName = NSLocale.currentLocale().displayNameForKey(NSLocaleIdentifier, value: voiceLanguageCode)
+            let dictionary = ["languageName": languageName, "languageCode": voiceLanguageCode]
+            ttVoiceLanguages.append(dictionary)
+        }
+        }
     
     @IBOutlet weak var tableView: UITableView!
    
