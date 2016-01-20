@@ -74,6 +74,7 @@ var selectedVoiceLanguage = 0
         }
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var testButton: UIButton?
    
     var nicknamefield : UITextField?
     
@@ -85,6 +86,7 @@ var selectedVoiceLanguage = 0
     var microphonecell : UITableViewCell?
     var ttsratecell : UITableViewCell?
     var ttsvolcell : UITableViewCell?
+
 
     var general_items = [UITableViewCell]()
     var display_items = [UITableViewCell]()
@@ -368,6 +370,7 @@ var selectedVoiceLanguage = 0
         ttsevents_items.append(ttsconlostcell)
 
     }
+
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()
@@ -553,6 +556,11 @@ var selectedVoiceLanguage = 0
         let txt = String(format: NSLocalizedString("The volume of the speaking voice is %.1f", comment: "preferences"), Float(sender.value))
         ttsvolcell!.detailTextLabel!.text = txt
     }
+    
+    @IBAction func HearSpeech(sender: UIButton) {
+        newUtterance(NSLocalizedString("Testing your speech settings.", comment: "TTS"))
+    }
+
     
     func joinrootChanged(sender: UISwitch) {
         
